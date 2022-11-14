@@ -1,0 +1,17 @@
+name: Bandit
+on: [push]
+
+jobs:
+  lint:
+     runs-on: ubuntu-latest
+     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+      - name: Install python
+        run: |
+          virtualenv bandit-env
+          python3 -m venv bandit-env
+      - name: install bandit
+        run: pip install bandit
+      - name: Run flake8
+        run: python3 -m flake8
